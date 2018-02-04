@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+    form.form.center-form(method='post')
+        h2 Add Category
+        .form-group
+          label(for='title') Name
+          input#name.input-field(name='name', type='text' value=name)
+        .form-group
+          input.form-btn.btn(type='submit', value='Add')

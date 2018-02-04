@@ -1,0 +1,9 @@
+extends ../layout.pug
+
+block content
+  .content
+    img(src=meme.image, alt=meme.title)
+    h3=`Title: ${meme.title}`
+    p=meme.description
+    p=`Votes: ${meme.votes}`
+    a.all-around-button(href=`/upvote/${meme._id}`) Upvote

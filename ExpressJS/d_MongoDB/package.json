@@ -1,0 +1,10 @@
+{
+  "name": "d_MongoDB",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "KP",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^4.12.1"
+  }
+}

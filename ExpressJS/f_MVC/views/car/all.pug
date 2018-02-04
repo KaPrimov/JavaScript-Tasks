@@ -1,0 +1,24 @@
+extends ../layout.pug
+
+block content
+  h1.head-title Welcome to ShopStop!
+  form#search-form(action="/car/all?page=1")
+    input(type='text', name='query', placeholder='Search By Model...')
+    a(type='submit', value='Search')
+  .cards 
+    if cars.length === 0
+      h2 No Cars Found!
+    each car in cars
+      .product-card
+        img.product-img(src=`${car.image}`)
+        h2=car.model
+        p=`Price ${car.price}$`
+
+        if user
+          a.btn.btn-small.btn-success(href=`/car/rent/${car._id}`)= 'Rent'
+          if user.roles.indexOf('Admin') > -1
+            a.btn.btn-small.btn-warning(href=`/car/edit/${car._id}`)= 'Edit'
+  if (!isNaN(pageData.prev) && !isNaN(pageData.next)) 
+    .paging-div
+      a(href='/car/all?page=' + pageData.prev)= '[PREV]'
+      a(href='/car/all?page=' + pageData.next)= '[NEXT]'

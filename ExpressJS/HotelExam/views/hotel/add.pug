@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+    form.form.center-form(method='post')
+        h2 Add Hotel
+        .form-group
+          label(for='title') Title
+          input#title.input-field(name='title', type='text' value=title)
+        .form-group
+          label(for='description') Description
+          input#description.input-field(name='description', type='text', max=100, value=description)
+        .form-group
+          label(for='location') Location
+          input#location.input-field(name='location', type='text', max=100, value=location)
+        .form-group
+          label(for='image') Image Url
+          input#image.input-field(name='image', type='text' value=image)
+        .form-group
+          label(for='description') Category
+          select.input-field(name='category')
+            each category in categories
+              option(value=`${category._id}`)=category.name
+        .form-group
+          input.form-btn.btn(type='submit', value='Add')

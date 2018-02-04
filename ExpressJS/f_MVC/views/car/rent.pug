@@ -1,0 +1,23 @@
+extends ../layout.pug
+
+block content
+  form.form.center-form(method='post')
+    h2 Rent Product
+    .form-group
+      label
+      .product-card
+        img.product-img(src=`${car.image}`)
+    .form-group
+      label(for='name') Name
+      input#name.input-field(name='name', type='text', value=car.model disabled )
+    .form-group
+      label(for='price') Price
+      input#price.input-field(name='price', type='number', value=car.price disabled )
+    if car.isRentable()
+      .form-group
+        label(for='days') Days to Rent
+        input#name.input-field(name='days', type='number', min=1, max=20)
+      .form-group
+        input.form-btn.btn-success.btn(type='submit', value='Rent')
+    else
+      h3 Sorry, the car is not available at the moment

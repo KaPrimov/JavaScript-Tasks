@@ -1,0 +1,23 @@
+extends ../layout.pug
+
+block content
+
+  h2= `${user.firstName} ${user.lastName} has the followin activity: `
+
+  h3 Hotels:
+  if user.createdHotels.length === 0
+    h2 No Hotels Found!
+  else
+    each hotel in user.createdHotels
+      .product-card        
+        h2=hotel.title
+        img.product-img(src=`${hotel.image}`)
+        p=`Created on: ${hotel.date}`
+  
+  h3 Comments:
+  if user.comments.length === 0
+    h2 No Comments Found!
+  else
+    ul
+      each comment in user.comments
+        li= comment.text

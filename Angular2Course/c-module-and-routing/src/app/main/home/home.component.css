@@ -1,0 +1,27 @@
+.wrapper {
+  text-align: center;
+  padding: 0 50px;
+}
+
+.wrapper div {
+  display: inline-block;
+  width: 45%;
+  box-sizing: border-box;
+  padding: 20px;
+  font-size: 40px;
+}
+.yellow {
+  background: yellow;
+  color: black;
+}
+.red {
+  background: red;
+}
+.blue {
+  background: blue;
+  color: white;
+}
+.green {
+  background: green;
+  color: white;
+}

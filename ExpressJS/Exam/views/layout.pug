@@ -1,0 +1,34 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  title Doner Place
+  link(href='/css/site.css', type='text/css', rel='stylesheet')
+.container
+  header
+    span.logo Doner Place
+    if user
+      span.greeting= user.username
+        form#logout-form(method="post" action="/user/logout")
+        a(href="javascript:document.getElementById('logout-form').submit()") [logout]
+    else
+     
+    ul.menu
+      li
+        a.button(href='/') Home
+      if user 
+        li
+          a.button(href='/orders/status') Order Status   
+        if (user.roles.indexOf('Admin') !== -1)
+          li
+            a.button(href='/product/create') Create Product
+          li
+            a.button(href='/orders/all') All Orders
+      else
+        li
+          a.button(href='/user/register') Register
+        li
+          a.button(href='/user/login') Login
+  main
+    block content
+  footer
+    | Doner Place &copy; 2017

@@ -1,0 +1,12 @@
+extends ../layout.pug
+
+block append content  
+    h1.head-title All Categories
+    .cards
+      each category in categories
+        a(href=`/list/${category.name}` class='hotel-link')
+          .product-card
+            h2=category.name
+              if (user && user.roles.indexOf('Admin') > -1)
+                form.form.center-form(method='post', action='/category/delete/' + category._id)  
+                  input#text.input-field(name='text', type='submit', value='Delete Category')

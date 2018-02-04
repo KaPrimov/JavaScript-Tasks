@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title MemeDB
+    link(rel='icon', type='image/x-icon', href='/content/images/favicon.ico')
+    link(rel="stylesheet", type="text/css", href="/public/css/main.css")
+  body
+    header
+      .inner
+        nav
+          a(href="/" class="logo")
+            img(class="logo" src="/public/images/nodeLogo.png" alt="nodeLogo")
+          input(type="checkbox" id="nav")
+          label(for="nav")
+          ul.navigation
+            li
+              a(href='/') Home Page
+            li
+              a(href='/addMeme') Add Meme
+            li
+              a(href='/addGenre') Add Genre
+            li 
+              a(href='/viewAllMemes') View All Memes
+            li
+              a(href='/searchMeme') Search Meme
+    main
+      block content
+    footer
+       p &copy;Meme

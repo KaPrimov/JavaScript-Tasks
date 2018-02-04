@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Table Builder</title>
+<style>td,th { background:#DDD; padding:5px }</style>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+    <div id="main"></div>
+    <script>
+        function tableBuilder(selector) {
+            let table = $('<table>');
+            $(selector).empty();
+            return {
+                createTable(columnNames) {
+                    let tr = $('<tr>');
+                    for (let i = 0; i < columnNames.length; i++) {
+                        let th = $('<th>');
+                        th.text(columnNames[i]);
+                        tr.append(th);
+                    }
+                    tr.append($('<th>Action</th>'));
+                    table.append(tr);
+                    $(selector).append(table)
+                },
+                fillData(dataRows) {
+                    let button = $('<button>');
+                    button.text('Delete');
+                    for (let i = 0; i < dataRows.length; i++) {
+                        let tr = $('<tr>');
+                        for (let j = 0; j < dataRows[i].length; j++) {
+                            let td = $('<td>');
+                            td.text(dataRows[i][j]);
+                            tr.append(td);
+                        }
+                        let button = $('<button>');
+                        button.text('Delete');
+                        let td = $('<td>');
+                        td.append(button);
+                        tr.append(td);
+                        $(table).append(tr);
+                    }
+                    $('<button>').click(this.deleteRow());
+                },
+                deleteRow () {
+                    $('button').click(function () {
+                        $(this).parent().parent().remove();
+                    })
+                }
+            };
+        }
+    </script>
+    <script>
+    $(function() {
+        let builder = tableBuilder("#main");
+        builder.createTable(['Name', 'Town']);
+        builder.fillData([
+            ['Maria', 'Sofia'],
+            ['Kiril', 'Varna'],
+            ['Ani <new>', 'Ruse'],
+        ]);
+    });
+</script>
+</body>
+</html>

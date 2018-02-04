@@ -1,0 +1,13 @@
+{
+  "globalDependencies": {
+    "bcryptjs": "registry:dt/bcryptjs#2.3.0+20151217030501",
+    "connect-flash": "registry:dt/connect-flash#0.0.0+20160317120654",
+    "express": "registry:dt/express#4.0.0+20160708185218",
+    "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20161012061536",
+    "moment": "registry:dt/moment#2.11.1+20161010105546",
+    "mongoose": "registry:dt/mongoose#4.7.0+20161207232433",
+    "mongoose-auto-increment": "registry:dt/mongoose-auto-increment#5.0.1+20151122044555",
+    "node": "registry:dt/node#6.0.0+20161019125345",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
+  }
+}

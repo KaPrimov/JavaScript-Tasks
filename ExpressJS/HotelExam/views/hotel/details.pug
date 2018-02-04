@@ -1,0 +1,33 @@
+extends ../layout.pug
+
+block content
+
+  h2= `${hotel.title}:`
+  img.product-img(src=`${hotel.image}`)
+  p= `Description: ${hotel.description}`
+  p= `Location: ${hotel.location}`
+  p= `Views: ${hotel.views}`
+  p= `Likes: ${hotel.likes}`
+  if user && isLiked    
+    form.form.center-form(method='post', action='/like/' + hotel._id)  
+          input#text.input-field(name='text', type='submit', value='Like')
+  else if user && !isLiked
+    form.form.center-form(method='post', action='/dislike/' + hotel._id)  
+          input#text.input-field(name='text', type='submit', value='Dislike')
+  form.form.center-form(method='post')
+    h3 Add Comment Here:
+    .form-group
+      input#text.input-field(name='text', type='text')
+
+  if comments.length === 0
+    h2 No Comments Found!
+  else
+    ul
+      each comment in comments
+        li= comment.text
+        if (user && user.roles.indexOf('Admin') > -1)
+          a(href="/comment/delete/" + comment._id)= 'Delete'          
+  if (user && user.roles.indexOf('Admin') > -1)
+    form.form.center-form(method='post', action='/hotel/delete/' + hotel._id)  
+      input#text.input-field(name='text', type='submit', value='Delete Hotel')
+  

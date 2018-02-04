@@ -1,0 +1,51 @@
+.warper{
+  display: inline-block;
+  position: relative;
+}
+
+.warper .sliderImg{
+  max-height: 400px;
+}
+
+.warper .slider-button{
+  position: absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width: 150px;
+  height: 150px;
+}
+
+.warper .case-left {
+  left: 0;
+}
+.warper .case-right {
+  right: 0;
+}
+
+img.roster-image {
+  height: 230px;
+  border: 1px solid yellow
+}
+
+div.app {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+div.roster-images-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center
+}
+
+div.bio-wrapper {
+  max-height: 300px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+div.bio-wrapper img {
+  max-height: 300px;
+}

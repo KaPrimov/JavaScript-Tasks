@@ -1,0 +1,13 @@
+extends ../layout.pug
+
+block content
+  h1=globalTitle
+
+  .memes
+    each meme in memes
+      .meme-wrapper
+        h2=meme.title
+        img(src=meme.image, alt="image-name")
+        p=meme.description.substring(0, 20)
+        a.all-around-button(href=`/meme/details/${meme._id}`)= 'Details'
+      

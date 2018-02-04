@@ -1,0 +1,25 @@
+extends ../layout.pug
+
+block append content
+  h1 Welcome to Doner Place!
+  p
+    | We offer a wide variety of tasty doner kebab, cutosmized to your liking. Choose from different sizes of chicken, beef and lamb and any topping you want. Place your order now!
+  .products
+    if (lamb.length > 0)
+      h2 Lamb Doner
+      each product in lamb
+        .product-card
+          img(src=product.image)
+          a.button.product-title(href='/order/customize/' + product._id) Order
+    if (chicken.length > 0)
+      h2 Chicken Doner
+      each product in chicken
+        .product-card
+          img(src=product.image)
+          a.button.product-title(href='/order/customize/' + product._id) Order
+    if (beef.length > 0)
+      h2 Beef Doner
+      each product in beef
+        .product-card
+          img(src=product.image)
+          a.button.product-title(href='/order/customize/' + product._id) Order

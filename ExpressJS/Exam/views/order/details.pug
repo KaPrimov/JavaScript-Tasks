@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+  h1 Order details
+  .catalog
+    .column
+      img(src=product.image)
+    .column
+      h2= `${product.category}, Doner ${product.size}`
+      h3= date
+      .toppings
+        each topping in order.toppings
+          p= topping
+          br       
+    .status
+      .status-block
+        span.progress-right
+        if (order.status === 'Pending')
+          span.checkpoint.current
+        else
+          span.checkpoint
+        br
+        |                         Pending
+      .status-block
+        span.progress-left
+        span.progress-right
+        if (order.status === 'In Progress')
+          span.checkpoint.current
+        else
+          span.checkpoint
+        br
+        |                         In progress
+      .status-block
+        span.progress-left
+        span.progress-right
+        if (order.status === 'In Transit')
+          span.checkpoint.current
+        else
+          span.checkpoint
+        br
+        |                         In transit
+      .status-block
+        span.progress-left
+        if (order.status === 'Delivered')
+          span.checkpoint.current
+        else
+          span.checkpoint
+        br
+        |                         Delivered

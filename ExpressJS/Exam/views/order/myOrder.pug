@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  if orders
+    h1 Your orders
+    .orders
+    form(method='POST')  
+      for order in orders
+        .order
+          span.order-time= dateFormatter(order.date)
+          span.order-name= `${order.product.category} doner, ${order.product.size} cm`
+          if user.roles.indexOf('Admin') !== -1
+            span.order-status              
+              select(name=order._id)
+                if (order.status === 'Pending')
+                  option(value='Pending' selected='selected') Pending
+                else
+                  option(value='Pending') Pending
+                if (order.status === 'In Progress')
+                  option(value='In Progress' selected='selected') In Progress
+                else
+                  option(value='In Progress') In Progress
+                if (order.status === 'In Transit')
+                  option(value='In Transit' selected='selected') In Transit
+                else
+                  option(value='In Transit') In Transit
+                if (order.status === 'Delivered')
+                  option(value='Delivered' selected='selected') Delivered
+                else
+                  option(value='Delivered') Delivered
+          else
+            span.order-status= order.status
+          a.button.order-button(href='/order/details/' + order._id ) Details
+      input.button(type='submit', value='Save Changes', style='border:0')
+  else
+    h1 No Orders
+        

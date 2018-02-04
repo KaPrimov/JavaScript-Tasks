@@ -1,0 +1,21 @@
+extends ../layout.pug
+
+block append content  
+    h1.head-title All Users
+    .cards
+      each user in users
+        .product-card(style={'width': "30%"})
+          h2=user.username
+          p=`Full Name: ${user.firstName} ${user.lastName}`
+          if (user.roles.indexOf('Admin') === -1)
+            form.form.center-form(method='post', action='/admins/add/' + user._id)  
+              input#text.input-field(name='text', type='submit', value='Make Admin' style={'font-size': "14px"})
+          else
+            h2='User is Admin'
+          if (user.isBlocked)
+            form.form.center-form(method='post', action='/unblock/' + user._id)  
+              input#text.input-field(name='text', type='submit', value='Unblock' style={'font-size': "14px"})
+          else
+            form.form.center-form(method='post', action='/block/' + user._id)  
+              input#text.input-field(name='text', type='submit', value='Block' style={'font-size': "14px"})
+    

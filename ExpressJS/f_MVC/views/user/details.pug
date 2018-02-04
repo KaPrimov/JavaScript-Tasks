@@ -1,0 +1,14 @@
+extends ../layout.pug
+
+block content
+
+  h2= `${user.firstName} ${user.lastName} rented the following cars: `
+
+  if user.rentedCars.length === 0
+    h2 No Cars Found!
+  else
+    each car in user.rentedCars
+      .product-card        
+        h2=car[0].model
+        p=`Rented on: ${new Date(car[0].rentedOn).toDateString()}`
+        p=`For: ${car[0].rentDuration} days`

@@ -1,0 +1,9 @@
+<h1 class="title">Welcome to Article Site!</h1>
+<div class="container">
+  <div>
+    <app-headers (selection)="showDetails($event)" *ngFor="let article of articles" [incommingArticle]="article"></app-headers>
+  </div>
+  <div>
+    <app-article (deleteArticleEmitter)="deleteTargetArticle($event)" *ngIf="selectedArticle" [article]="selectedArticle"></app-article>
+  </div>
+</div>

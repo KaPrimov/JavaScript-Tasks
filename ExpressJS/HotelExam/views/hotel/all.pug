@@ -1,0 +1,18 @@
+extends ../layout.pug
+
+block append content  
+    h1.head-title All Hotels
+    .cards
+      each hotel in hotels
+        a(href=`/hotel/${hotel._id}/${hotel.title}` class='hotel-link')
+          .product-card
+            img.product-img(src=`${hotel.image}`)
+            h2=hotel.title
+            p=`Description: ${hotel.description}`
+            p=`Location: ${hotel.location}`
+            p=`Views: ${hotel.views}`
+    if (!isNaN(pageData.prev) && !isNaN(pageData.next)) 
+      .paging-div
+        a(href='/list?page=' + pageData.prev)= '[PREV]'
+        a(href='/list?page=' + pageData.next)= '[NEXT]'
+

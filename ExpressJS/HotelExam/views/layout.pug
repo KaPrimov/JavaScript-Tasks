@@ -1,0 +1,46 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(http-equiv='X-UA-Compatible', content='ie=edge')
+        title Hotel System
+        link(rel='stylesheet', type='text/css', href='/site.css')
+    body
+        header
+            nav.nav
+                ul
+                    li
+                      a(href='/') Home Page
+                    li
+                      a(href='/list?page=1') All Hotels
+                    li
+                      a(href='/categories') Categories
+                    li.delimeter
+                    if user
+                      if (user.roles.indexOf('Admin') !== -1)
+                        li
+                          a(href='/admins/all') All Users
+                        li
+                          a(href='/category/add') Add Category
+                      li.align-right
+                        form#logout-form(method="post" action="/user/logout")
+                        a(href="javascript:document.getElementById('logout-form').submit()") Logout
+                      li.align-right
+                        a(href='/add') Add Hotel
+                      li.align-right
+                        a(href=`/user/${user.username}`)= user.username
+                    else         
+                      li.align-right
+                        a(href='/user/register') Register
+                      li.align-right
+                        a(href='/user/login') Login
+        if error
+            h2.message.error= error
+        else if success
+            h2.message.success= success
+
+        main
+            block content
+        footer
+            p &copy;Hotel System

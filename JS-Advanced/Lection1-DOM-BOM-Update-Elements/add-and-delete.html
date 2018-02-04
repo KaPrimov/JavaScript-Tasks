@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add-delet</title>
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+<h1>List of Items</h1>
+<ul id="items"></ul>
+<input type="text" id="newText" />
+<input type="button" value="Add"
+       onclick="addItem()">
+<script>
+    function addItem() {
+        let text = $('#newText').val();
+        let li = $('<li>');
+        li.append(text + ' ');
+        let span = $('<span>');
+        span.html("<a href='#'>[Delete]</a>");
+        span.children().on('click', deleteItem);
+        li.append(span);
+        $('#items').append(li);
+        $('#newText').val('');
+        function deleteItem() {
+            let li = span.parent();
+            li.remove()
+        }
+
+
+//        let text = document.getElementById('newText').value;
+//        let li = document.createElement("li");
+//        li.appendChild(document.createTextNode(text + " "));
+//        let span = document.createElement('span');
+//        span.innerHTML = "<a href='#'>[Delete]</a>";
+//        span.firstChild.addEventListener('click', deleteItem);
+//        li.appendChild(span);
+//        document.getElementById("items").appendChild(li);
+//        document.getElementById('newText').value = '';
+//        function deleteItem() {
+//            let li = span.parentNode;
+//            li.parentNode.removeChild(li)
+//        }
+    }
+</script>
+
+
+</body>
+</html>
