@@ -1,3 +1,5 @@
+const createSession = require('./signin').createSessions;
+
 const handleRegister = (req, res, db, bcrypt) => {
   const { email, name, password } = req.body;
   if (!email || !name || !password) {
@@ -20,8 +22,12 @@ const handleRegister = (req, res, db, bcrypt) => {
             joined: new Date()
           })
           .then(user => {
-            res.json(user[0]);
+            createSession(user[0])
+              .then(data => {
+                res.json({user: user[0], data});
+              })
           })
+          .catch(console.error)
       })
       .then(trx.commit)
       .catch(trx.rollback)

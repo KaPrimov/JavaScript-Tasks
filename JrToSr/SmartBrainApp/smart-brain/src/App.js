@@ -46,6 +46,39 @@ class App extends Component {
     this.state = initialState;
   }
 
+  componentDidMount() {
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      fetch('http://localhost:3000/signin', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      })
+      .then(resp => resp.json())
+      .then(data => {
+        if (data && data.id) {
+          fetch(`http://localhost:3000/profile/${data.id}`, {
+            method: 'get',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token
+            }
+          })
+            .then(resp => resp.json())
+            .then(user => {
+              if (user && user.email) {
+                this.loadUser(user);
+                this.onRouteChange('home');
+              }
+            })
+        }
+      })
+      .catch(console.error)
+    }
+  }
+
   loadUser = (data) => {
     this.setState({user: {
       id: data.id,
@@ -60,6 +93,9 @@ class App extends Component {
 
   calculateFaceLocation = (data) => {
     const boxes = [];
+    if (!data || !data.outputs) {
+      return boxes;
+    }
     const image = document.getElementById('inputimage');
     for (let box of data.outputs[0].data.regions) {
       const clarifaiFace = box.region_info.bounding_box;
@@ -88,7 +124,10 @@ class App extends Component {
     this.setState({imageUrl: this.state.input});
       fetch('http://localhost:3000/imageurl', {
         method: 'post',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': window.localStorage.getItem('token')
+        },
         body: JSON.stringify({
           input: this.state.input
         })
@@ -98,7 +137,10 @@ class App extends Component {
         if (response) {
           fetch('http://localhost:3000/image', {
             method: 'put',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': window.localStorage.getItem('token')
+            },
             body: JSON.stringify({
               id: this.state.user.id
             })
@@ -117,7 +159,22 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === 'signout') {
-      return this.setState(initialState)
+      return this.setState(initialState, () => {
+        fetch(`http://localhost:3000/signout`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': window.localStorage.getItem('token')
+          }
+        })
+        .then(resp => resp.json())
+        .then(isSuccess => {
+          if (isSuccess) {
+            window.localStorage.removeItem('token');
+          } 
+        })
+        .catch(console.error);
+      })
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
