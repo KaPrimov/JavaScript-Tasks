@@ -10,7 +10,9 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
+
 import {setCurrentUser} from './redux/user/user.actions';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 
 class App extends React.Component {
 
