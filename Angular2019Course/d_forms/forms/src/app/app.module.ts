@@ -9,6 +9,7 @@ import { UserNameDirective } from './directives/user-name.directive';
 import { EmailDirective } from './directives/email.directive';
 import { PhoneNumberDirective } from './directives/phone-number.directive';
 import { PasswordDirective } from './directives/password.directive';
+import { UrlValidatorDirective } from './directives/url-validator.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PasswordDirective } from './directives/password.directive';
     UserNameDirective,
     EmailDirective,
     PhoneNumberDirective,
-    PasswordDirective
+    PasswordDirective,
+    UrlValidatorDirective
   ],
   imports: [
     BrowserModule,

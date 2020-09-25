@@ -54,6 +54,13 @@
             <input required class="form-control" placeholder="Repeat password" type="password" ngModel name="repeatPassword" #repeatPassword="ngModel" >
           </div>
           <div class="alert alert-danger" *ngIf="repeatPassword.touched && repeatPassword.errors && repeatPassword.errors.mustMatch">Passwords must match</div>
+          <div class="form-group input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-image"></i> </span>
+            </div>
+            <input required appUrlValidator #urlVar="ngModel" class="form-control" placeholder="Add Image URL" type="url" ngModel name="imageUrl">
+          </div>
+          <div class="alert alert-danger" *ngIf="urlVar.touched && urlVar.errors?.urlValidator">Invalid URL</div>
           <div class="form-group">
             <button [disabled]="!form.valid" type="submit" class="btn btn-primary btn-block"> Create Account </button>
           </div>
