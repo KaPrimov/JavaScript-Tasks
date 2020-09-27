@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row space-top">
+        <div class="col-md-12">
+            <h1>Create New Furniture</h1>
+            <p>Please fill all fields.</p>
+        </div>
+    </div>
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row space-top">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="form-control-label" for="new-make">Make</label>
+                    <input ngModel name="make" #make="ngModel" minlength="4" class="form-control" id="new-make" type="text">
+                    <div class="alert alert-danger" *ngIf="make.touched && make.errors?.minlength">Make must be at least 4 symbols</div>
+                </div>
+                <div class="form-group has-success">
+                    <label class="form-control-label" for="new-model">Model</label>
+                    <input ngModel name="model" #model="ngModel" minlength="4" class="form-control" id="new-model" type="text">
+                    <div class="alert alert-danger" *ngIf="model.touched && model.errors?.minlength">Model must be at least 4 symbols</div>
+                </div>
+                <div class="form-group has-danger">
+                    <label class="form-control-label" for="new-year">Year</label>
+                    <input ngModel name='year' #year="ngModel" min="1940" max="2050" class="form-control is-invalid" id="new-year" type="number">
+                    <div class="alert alert-danger" *ngIf="year.touched && year.errors?.min">Year must be between 1940 and 2050</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="new-description">Description</label>
+                    <input ngModel name="description" #description="ngModel" minlength="10" class="form-control" id="new-description" type="text">
+                    <div class="alert alert-danger" *ngIf="description.touched && description.errors?.minLength">Description must be at least 10 symbols</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="form-control-label" for="new-price">Price</label>
+                    <input ngModel name="price" #price="ngModel" min="0" class="form-control" id="new-price" type="number">
+                    <div class="alert alert-danger" *ngIf="price.touched && price.errors?.min">Price must be positive</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="new-image">Image</label>
+                    <input ngModel name='image' #image="ngModel" required class="form-control" id="new-image" type="text">
+                    <div class="alert alert-danger" *ngIf="image.touched && image.errors?.required">Image URL ise required</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="new-material">Material (optional)</label>
+                    <input ngModel name="material" class="form-control" id="new-material" type="text">
+                </div>
+                <input [disabled]="!form.valid" type="submit" class="btn btn-primary" value="Create" />
+            </div>
+        </div>
+    </form>
+</div>

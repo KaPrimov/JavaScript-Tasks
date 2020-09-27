@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MustMatchDirective } from './directives/must-match.directive';
 import { UserNameDirective } from './directives/user-name.directive';
 import { EmailDirective } from './directives/email.directive';
 import { PhoneNumberDirective } from './directives/phone-number.directive';
 import { PasswordDirective } from './directives/password.directive';
 import { UrlValidatorDirective } from './directives/url-validator.directive';
+import { RegisterFormReactiveComponent } from './register-form-reactive/register-form-reactive.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,13 @@ import { UrlValidatorDirective } from './directives/url-validator.directive';
     EmailDirective,
     PhoneNumberDirective,
     PasswordDirective,
-    UrlValidatorDirective
+    UrlValidatorDirective,
+    RegisterFormReactiveComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
